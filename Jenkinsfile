@@ -22,5 +22,18 @@ pipeline {
                 '''
             }
         }
+        stage('Test'){
+            steps{
+                script {
+                    if (fileExists('build/index.html')){
+                        echo "index file found ! now going to run test"
+
+                    } else {
+                        echo "Index file doesn't exist "
+                    }
+                }
+            }
+
+        }
     }
 }
