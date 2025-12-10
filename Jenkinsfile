@@ -23,10 +23,17 @@ pipeline {
             }
         }
         stage('Test'){
+            agent{
+                docker{
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
             steps{
                 script {
                     if (fileExists('build/index.html')){
                         echo "index file found ! now going to run test"
+                        sh 'npm test'
 
                     } else {
                         echo "Index file doesn't exist "
