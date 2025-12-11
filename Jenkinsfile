@@ -51,8 +51,10 @@ pipeline {
             }
             steps{
                 sh '''
-                npm install -g serve
-                learn-jenkins-app\node_modules\.bin\serve -s build
+                npm install serve 
+                # run serve as root and & means running in background 
+                learn-jenkins-app\node_modules\.bin\serve -s build &
+                sleep 10
                 npx playwright test
 
                 '''
